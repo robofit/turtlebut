@@ -16,6 +16,6 @@
         <remap from="imu/mag" to="imu_right/mag"/>
     </node>
 
-    <include file="$(find btb_imu)/launch/imu_pose.launch"/>
+    <include file="$(find tb_bringup)/components/imu_pose.launch"/>
     
 </launch>

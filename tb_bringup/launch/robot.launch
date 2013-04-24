@@ -16,7 +16,7 @@
   <include file="$(find tb_bringup)/components/laser.launch"/>
   
   <!-- IMU driver -->
-  <include file="$(find tb_imu)/launch/imu.launch"/>
+  <include file="$(find tb_bringup)/components/imu.launch"/>
 
   <!-- base driver including odometry estimator -->
   <include file="$(find tb_bringup)/components/base.launch"/>
