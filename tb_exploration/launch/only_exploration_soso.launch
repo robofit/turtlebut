@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="tb_exploration" type="explore_soso" respawn="false" name="explore_soso" output="screen"/>
+</launch>

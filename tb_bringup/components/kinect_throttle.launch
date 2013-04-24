@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<launch>
+
+      <!-- default max_rate -->
+    <arg name="max_rate" default="3.0" />
+
+    <!-- run the nodelet manager -->
+    <!--node pkg="nodelet" type="nodelet" name="openni_manager2" output="screen" respawn="false" args="manager" /-->
+
+    <!-- depth points throttling -->
+    <node pkg="nodelet" type="nodelet" name="kinect_throttle" args="load srs_env_model_utils/KinectThrottle cam3d_nodelet_manager" respawn="true">
+        <param name="max_rate" value="$(arg max_rate)"/>
+
+        <remap from="rgb_cloud_in" to="/cam3d/depth_registered/points"/>
+        <remap from="rgb_cloud_out" to="/cam3d_throttled/depth_registered/points"/>
+
+        <remap from="rgb_image_in" to="/cam3d/rgb/image_color"/>
+        <remap from="rgb_image_out" to="/cam3d_throttled/rgb/image_color"/>
+
+        <remap from="rgb_caminfo_in" to="/cam3d/rgb/camera_info"/>
+        <remap from="rgb_caminfo_out" to="/cam3d_throttled/rgb/camera_info"/>
+
+        <remap from="depth_image_in" to="/cam3d/depth/image"/>
+        <remap from="depth_image_out" to="/cam3d_throttled/depth/image"/>
+
+        <remap from="cloud_in" to="/cam3d/depth/points"/>
+        <remap from="cloud_out" to="/cam3d_throttled/depth/points"/>
+    </node>
+    
+</launch>

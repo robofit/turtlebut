@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="imu_um6" type="imu_um6_node.py" name="imu_um6_left_node" output="screen" respawn="true">
+        <param name="port" type="string" value="/dev/ttyUSB2"/>
+        <param name="link" type="string" value="imu_left_link"/>
+        <remap from="imu/data" to="imu_left/data"/>
+        <remap from="imu/rpy" to="imu_left/rpy"/>
+        <remap from="imu/mag" to="imu_left/mag"/>
+    </node>
+    
+    <node pkg="imu_um6" type="imu_um6_node.py" name="imu_um6_right_node" output="screen" respawn="true">
+        <param name="port" type="string" value="/dev/ttyUSB1"/>
+        <param name="link" type="string" value="imu_right_link"/>
+        <remap from="imu/data" to="imu_right/data"/>
+        <remap from="imu/rpy" to="imu_right/rpy"/>
+        <remap from="imu/mag" to="imu_right/mag"/>
+    </node>
+
+    <include file="$(find tb_bringup)/components/imu_pose.launch"/>
+    
+</launch>

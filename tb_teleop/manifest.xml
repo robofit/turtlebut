@@ -1,0 +1,18 @@
+<package>
+  <description brief="tb_teleop">
+
+     btb_teleop
+
+  </description>
+  <author>Zdenek Materna</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/tb_teleop</url>
+  <depend package="joy"/>
+  <depend package="geometry_msgs"/>
+  <depend package="turtlebot_teleop"/>
+  <depend package="turtlebot_interactive_markers"/>
+
+</package>
+
+

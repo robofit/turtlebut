@@ -1,0 +1,26 @@
+<package>
+  <description brief="tb_bringup">
+
+     turtlebot_bringup provides roslaunch scripts for starting the TurtleBot base functionality. 
+
+  </description>
+  <author>Zdenek Materna (imaterna@fit.vutbr.cz)</author>
+  <license>BUT Open Souce License</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/tb_bringup</url>
+  <depend package="joy"/>
+  <depend package="robot_state_publisher"/>
+  <depend package="openni_camera"/>
+  <depend package="tb_description"/>
+  <!--depend package="btb_imu"/-->
+  <depend package="robot_pose_ekf"/>
+  <depend package="LMS1xx"/>
+  <!--depend package="laser_scan_matcher"/-->
+  <!--depend package="srs_env_model_utils"/-->
+
+  <!-- for video teleoperation -->
+  <depend package="compressed_image_transport"/>
+  
+</package>
+
+

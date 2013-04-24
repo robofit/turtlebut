@@ -1,0 +1,18 @@
+<package>
+  <description brief="tb_dynamixel">
+
+     kinect_servo
+
+  </description>
+  <author>Zdenek Materna, Radim Luza</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/tb_dynamixel_servos</url>
+  <depend package="dynamixel_controllers"/>
+  <depend package="std_msgs"/>
+  <depend package="sensor_msgs"/>
+  <depend package="dynamixel_msgs"/>
+
+</package>
+
+

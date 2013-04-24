@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<robot name="constants"  
+       xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:property name="M_PI" value="3.14159"/>
+  <xacro:property name="SCALE" value="0.0254"/>
+  
+  <!--
+	     For Contact Joints,
+	       erp = h * kp / (h * kp + kd)
+	       cfm = 1.0 / (h * kp + kd)
+	
+	     For example,
+	       h = erp = 0.001, cfm = 0 requires kd >> 1, kp = kd / (1 - h)
+	       h = erp = 0.0, cfm = 0 requires kd >> 1, kp = 0
+  -->
+
+  <xacro:property name="KP" value="100000000000.0"/> <!-- erp of ~1e-2 -->
+  <xacro:property name="KD" value="1000000000.0"/> <!-- cfm of ~1e-10 -->
+  
+  <xacro:property name="STOP_KP" value="100000000.0"/> <!-- erp of ~1e-2 -->
+  <xacro:property name="STOP_KD" value="100000000.0"/> <!-- cfm of ~1e-10 -->
+  
+ </robot>

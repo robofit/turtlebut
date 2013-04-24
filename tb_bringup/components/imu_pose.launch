@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node pkg="imu_um6" type="imu_pose.py" name="imu_left_pose" output="screen" respawn="false">
+        <remap from="imu_data" to="imu_left/data"/>
+        <remap from="imu_pose" to="imu_left/pose"/>
+        <param name="link" type="string" value="imu_left_link"/>
+    </node>
+    
+    <node pkg="imu_um6" type="imu_pose.py" name="imu_right_pose" output="screen" respawn="false">
+        <remap from="imu_data" to="imu_right/data"/>
+        <remap from="imu_pose" to="imu_right/pose"/>
+        <param name="link" type="string" value="imu_right_link"/>
+    </node>
+    
+</launch>

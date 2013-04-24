@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node pkg="tb_base_driver" type="velocity_filter.py" name="velocity_filter" output="screen" respawn="false">
+    <param name="acc_lim_x" value="0.3"/> <!-- max. acceleration -->
+    <param name="acc_lim_th" value="0.3"/>
+    <param name="vel_lim_x" value="0.5"/> <!-- max. velocity -->
+    <param name="vel_lim_th" value="0.5"/>
+    <param name="vel_to" value="0.5"/> <!-- timeout for cmd_vel_safe command -->
+    <remap from="cmd_vel_in" to="/cmd_vel_safe"/>
+    <remap from="cmd_vel_out" to="/cmd_vel"/>
+  </node>
+
+</launch>

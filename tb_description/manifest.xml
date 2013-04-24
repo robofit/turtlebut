@@ -1,0 +1,19 @@
+<package>
+  <description brief="btb_description">
+
+     btb_description
+
+  </description>
+  <author>Zdenek Materna</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/btb_description</url>
+
+  <!--depend package="irobot_create_description"/-->
+  <depend package="urdf"/>
+  <depend package="xacro"/>
+  <depend package="smart_arm_description"/>
+
+</package>
+
+

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<robot>
+
+  <property name="turtlebot_calib_cam_x" value="0.10" />
+  <property name="turtlebot_calib_cam_y" value="0" />
+  <property name="turtlebot_calib_cam_z" value="0.64" />
+  <property name="turtlebot_calib_cam_rr" value="3.14159" />
+  <property name="turtlebot_calib_cam_rp" value="0" />
+  <property name="turtlebot_calib_cam_ry" value="0" />
+  <property name="turtlebot_camera_parent_name" value="base_link" />
+
+</robot>
