@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Base driver -->
+  <!--node pkg="roomba_500_series" name="roomba_driver" type="roomba500_light_node" output="screen"/-->
+  
+  <!-- Hacked base driver -->
+  <node pkg="tb_base_driver" name="roomba_driver" type="roomba500_light_node" output="screen" respawn="true">
+    <param name="test_vel" type="double" value="0.1"/>
+    <param name="test_odom_th" type="double" value="0.02"/>
+    <param name="port" type="string" value="/dev/ttyUSB0"/>
+  </node>
+  
+  <include file="$(find tb_base_driver)/launch/velocity_filter.launch" />
+  
+</launch>
