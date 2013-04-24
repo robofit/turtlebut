@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- node which is flipping video stream from camera (kinect) -->
+  <node name="video_flip_node" pkg="tb_common" type="video_flip_node">
+    <remap from="video_in"  to="/cam3d/rgb/image_color"/>
+    <remap from="video_out" to="/cam3d/rgb/image_color_flipped"/>
+  </node>
+
+</launch>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node pkg="turtlebot_interactive_markers" type="turtlebot_marker_server" name="tb_interactive_teleop" output="screen" respawn="false">
+    <remap from="cmd_vel" to="cmd_vel_safe"/>
+  </node>
+
+</launch>

@@ -1,0 +1,19 @@
+<package>
+  <description brief="btb_common">
+
+     btb_common
+
+  </description>
+  <author>Zdenek Materna</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/btb_common</url>
+  <depend package="rviz"/>
+  <depend package="image_transport"/>
+  <depend package="opencv2"/>
+  <depend package="cv_bridge"/>
+  <depend package="sensor_msgs"/>
+
+</package>
+
+

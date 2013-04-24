@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node pkg="rviz" type="rviz" name='rviz' args="-d $(find tb_common)/config/rviz-default.vcg"/>
+  
+   <!--node pkg="srs_wifi" name="cloud_decompressor_rgb" type="cloud_decompressor" respawn="false" output="screen">
+      <remap from="input"  to="/cam3d/rgb/points_compressed" />
+      <remap from="output" to="/cam3d/rgb/points_decompressed" />
+   </node-->
+  
+</launch>

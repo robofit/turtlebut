@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="scan_topic" default="scan" />
+
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+
+    <param name="throttle_scans" value="10"/>
+
+    <param name="odom_frame" value="odom_combined"/>
+    <param name="map_frame" value="map"/>
+    <param name="base_frame" value="base_link"/>
+    <param name="map_update_interval" value="1.0"/> <!-- smaller number - more errors -->
+    <param name="maxUrange" value="8.0"/>
+    <param name="maxRange" value="20.0"/>
+    <param name="linearUpdate" value="0.2"/> <!-- scanner has quite long range so we don't need low values here -> maybe ??? -->
+    <param name="angularUpdate" value="0.15"/>
+    <param name="temporalUpdate" value="5.0"/> 
+    <param name="resampleThreshold" value="0.5"/>
+    <param name="particles" value="30"/>
+  
+    <param name="xmin" value="-5.0"/>
+    <param name="ymin" value="-5.0"/>
+    <param name="xmax" value="5.0"/>
+    <param name="ymax" value="5.0"/>
+
+    <param name="delta" value="0.05"/>
+    <param name="llsamplerange" value="0.01"/>
+    <param name="llsamplestep" value="0.01"/>
+    <param name="lasamplerange" value="0.005"/>
+    <param name="lasamplestep" value="0.005"/>
+    <remap from="scan" to="$(arg scan_topic)"/>
+  </node>
+</launch>

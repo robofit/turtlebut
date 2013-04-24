@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Run self-filter -->
+  <!--node pkg="turtlebot_navigation" name="laser_self_filter" type="laser_footprint_filter" /-->
+
+  <!-- Run the map server -->
+  <arg name="map_file" default="$(find tb_navigation)/maps/$(env ROBOT_ENV)/map.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!--- Run AMCL -->
+  <include file="$(find tb_navigation)/launch/amcl.xml">
+    <arg name="scan_topic" value="scan" />
+  </include>
+
+  <!--- Run Move Base -->
+  <include file="$(find tb_navigation)/launch/move_base.xml" />
+
+</launch>
