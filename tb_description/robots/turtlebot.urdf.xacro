@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<robot name="btb"  
+       xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+       xmlns:xacro="http://ros.org/wiki/xacro">
+  <include filename="$(find tb_description)/urdf/turtlebot_hardware.urdf.xacro" />
+  <include filename="$(find tb_description)/urdf/turtlebot_body.urdf.xacro" />
+  <include filename="$(find tb_description)/urdf/turtlebot_calibration.xacro" />
+  <include filename="$(find tb_description)/urdf/turtlebot_kinect.urdf.xacro" />
+  <include filename="$(find tb_description)/urdf/smart_arm.xacro" />
+  <include filename="$(find tb_description)/urdf/constants.xacro" />
+
+  <gazebo>   
+     
+     <controller:gazebo_ros_controller_manager name="gazebo_ros_controller_manager" plugin="libgazebo_ros_controller_manager.so">
+          <alwaysOn>true</alwaysOn>
+          <updateRate>1000.0</updateRate>
+          <robotNamespace>dynamixel</robotNamespace>
+          <robotParam>robot_description</robotParam>
+          <interface:audio name="gazebo_ros_controller_manager_dummy_iface" />
+     </controller:gazebo_ros_controller_manager>
+     
+     <!--controller:gazebo_ros_p3d name="p3d_base_controller" plugin="libgazebo_ros_p3d.so">
+         <alwaysOn>true</alwaysOn>
+         <updateRate>100.0</updateRate>
+         <bodyName>base_link</bodyName>
+         <topicName>base_pose_ground_truth</topicName>
+         <gaussianNoise>0.0</gaussianNoise>
+         <frameName>map</frameName>
+         <xyzOffsets>0 0 0</xyzOffsets> 
+         <rpyOffsets>0 0 0</rpyOffsets>
+         <interface:position name="p3d_base_position"/>
+     </controller:gazebo_ros_p3d-->
+     
+     <!-- just for inspiration -->
+     <!--controller:gazebo_ros_power_monitor name="gazebo_ros_power_monitor_controller" plugin="libgazebo_ros_power_monitor.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>1.0</updateRate>
+      <timeout>5</timeout>
+      <interface:audio name="power_monitor_dummy_interface" />
+      <powerStateTopic>power_state</powerStateTopic>
+      <powerStateRate>10.0</powerStateRate>
+      <fullChargeCapacity>87.78</fullChargeCapacity>     
+      <dischargeRate>-474</dischargeRate>
+      <chargeRate>525</chargeRate>
+      <dischargeVoltage>15.52</dischargeVoltage>
+      <chargeVoltage>16.41</chargeVoltage>
+    </controller:gazebo_ros_power_monitor-->
+     
+     
+  </gazebo>
+
+  <!-- Body of TurtleBot, with plates, standoffs and Create (including sim sensors) -->
+  <turtlebot_body/>
+  
+   <smart_arm parent="base_link">
+     <origin xyz="0.13 0 0.12" rpy="0 0 0" />
+   </smart_arm>
+  
+  <!-- Kinect frames and mounting (includes simulation) -->
+  <turtlebot_kinect/>
+
+  
+</robot>
