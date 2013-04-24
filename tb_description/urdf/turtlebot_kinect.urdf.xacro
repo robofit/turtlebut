@@ -33,7 +33,7 @@
     <visual>
       <origin xyz=" 0 0 0 " rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://btb_description/meshes/kinect.dae"/>
+        <mesh filename="package://tb_description/meshes/kinect.dae"/>
       </geometry>
     </visual>
 
