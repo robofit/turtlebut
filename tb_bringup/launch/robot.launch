@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<launch>
+
+  <param name="/use_sim_time" value="false"/>
+
+  <!-- upload robot description to parameter server -->
+  <include file="$(find tb_description)/launch/upload_robot.launch"/>
+
+  <!-- Kinect driver -->
+  <include file="$(find tb_bringup)/components/kinect.launch"/>
+  
+  <!-- Fake laser -->
+  <include file="$(find tb_bringup)/components/laser_fake.launch"/>
+
+  <!-- Laser driver -->
+  <include file="$(find tb_bringup)/components/laser.launch"/>
+  
+  <!-- IMU driver -->
+  <include file="$(find tb_imu)/launch/imu.launch"/>
+
+  <!-- base driver including odometry estimator -->
+  <include file="$(find tb_bringup)/components/base.launch"/>
+  
+  <!-- start controllers for dynamixel servos -->
+  <!--include file="$(find tb_dynamixel)/launch/smart_arm.launch"/-->
+  
+  <!-- arm_navigation stack -->
+  <!--include file="$(find tb_manipulator)/launch/btb_arm_navigation.launch" /-->
+  
+  <!-- flip video from kinect which is upside down -->
+  <include file="$(find tb_common)/launch/video_flip.launch"/>
+  
+</launch>
