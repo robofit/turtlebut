@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Run self-filter -->
+  <!--node pkg="turtlebot_navigation" type="laser_footprint_filter" /-->
+ 
+  <!--- Run gmapping -->
+  <include file="$(find tb_navigation)/launch/gmapping.xml">
+    <arg name="scan_topic" value="scan" />
+  </include>
+
+  <!--- Run Move Base -->
+  <include file="$(find tb_navigation)/launch/move_base.xml"/>
+
+</launch>

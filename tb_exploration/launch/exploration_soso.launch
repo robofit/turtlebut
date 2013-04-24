@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find tb_navigation)/launch/gmapping.xml" />
+
+  <include file="$(find tb_navigation)/launch/move_base.xml" />
+
+  <include file="$(find tb_exploration)/launch/only_exploration_soso.launch" />
+</launch>

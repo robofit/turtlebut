@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!--node pkg="nodelet" type="nodelet" name="openni_manager" output="screen" respawn="false" args="manager"/-->
+
+  <!-- Fake Laser -->
+  <node pkg="nodelet" type="nodelet" name="kinect_laser" args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet cam3d_nodelet_manager" respawn="true">
+    <param name="output_frame_id" value="/camera_depth_frame"/>
+    <param name="scan_height" value="50"/> <!-- height in pixels -->
+    <param name="scan_time" value="0.125"/>
+    <param name="range_min" value="0.40"/>
+    <param name="range_max" value="5.0"/>
+    <remap from="image" to="/cam3d/depth_registered/image"/>
+    <remap from="camera_info" to="/cam3d/depth_registered/camera_info"/>
+    <remap from="scan" to="/scan_fake"/>
+  </node>
+
+
+</launch>

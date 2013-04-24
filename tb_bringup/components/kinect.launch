@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+
+	<param name="/cam3d/driver/data_skip" type="int" value="3"/>
+
+	<include file="$(find openni_launch)/launch/openni.launch">
+		<arg name="camera" value="cam3d"/>
+		<arg name="depth_registration" value="true"/>
+		<!--arg name="rgb_frame_id" value="/camera_rgb_frame" />
+		<arg name="depth_frame_id" value="/camera_depth_frame" /-->
+	</include>
+  
+  <!-- throttling of Kinect data -->
+	<!--include file="$(find btb_bringup)/components/kinect_throttle.launch"/-->
+  
+</launch>
+

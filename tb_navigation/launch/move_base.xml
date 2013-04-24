@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!--
+
+  more info in http://www.ros.org/wiki/navigation/Tutorials/RobotSetup
+
+  rosrun dynamic_reconfigure reconfigure_gui
+  
+  -->
+ 
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    
+    <remap from="cmd_vel" to="cmd_vel_safe" />
+
+    <param name="base_global_planner" type="string" value="navfn/NavfnROS"/>
+    <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS" />
+
+    <rosparam file="$(find tb_navigation)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find tb_navigation)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find tb_navigation)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find tb_navigation)/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find tb_navigation)/config/base_local_planner_params.yaml" command="load" />
+    
+  </node>
+
+</launch>

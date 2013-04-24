@@ -1,0 +1,23 @@
+<package>
+  <description brief="btb_exploration">
+
+     btb_exploration
+
+  </description>
+  <author>isolony</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/btb_exploration</url>
+  <depend package="roscpp"/>
+  <depend package="opencv2"/>
+  <depend package="std_msgs"/>
+  <depend package="nav_msgs"/>
+  <depend package="sensor_msgs"/>
+  <depend package="tf"/>
+  <depend package="move_base_msgs"/>
+  <depend package="actionlib"/>
+  <depend package="visualization_msgs"/>
+
+</package>
+
+
