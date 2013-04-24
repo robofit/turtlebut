@@ -1,0 +1,1 @@
+dynamixel_joints: ['shoulder_pan_joint', 'shoulder_pitch_joint','elbow_flex_joint','wrist_roll_joint','left_finger_joint','right_finger_joint','kinect_joint']
