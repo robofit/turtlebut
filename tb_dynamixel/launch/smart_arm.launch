@@ -44,16 +44,9 @@
     <param name="rate" type="double" value="50"/>
    </node>
    
-   <!-- just for debugging -> can be used to set possition of camera joint -->
-   <!--node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-    <param name="use_gui" value="false"/>
-    <param name="source_list" value="joint_state_topics"/>
-    
-  </node-->
-   
    </group>
    
    <!-- high level controller with action interface -->
-   <include file="$(find tb_manipulator)/launch/joint_trajectory_action.launch" />
+   <!--include file="$(find tb_manipulator)/launch/joint_trajectory_action.launch" /-->
     
 </launch>

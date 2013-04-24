@@ -22,7 +22,7 @@
   <include file="$(find tb_bringup)/components/base.launch"/>
   
   <!-- start controllers for dynamixel servos -->
-  <!--include file="$(find tb_dynamixel)/launch/smart_arm.launch"/-->
+  <include file="$(find tb_dynamixel)/launch/smart_arm.launch"/>
   
   <!-- arm_navigation stack -->
   <!--include file="$(find tb_manipulator)/launch/btb_arm_navigation.launch" /-->
