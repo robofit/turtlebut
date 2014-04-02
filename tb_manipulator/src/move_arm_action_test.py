@@ -26,7 +26,7 @@
 # along with this file.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import roslib; roslib.load_manifest('btb_manipulator')
+import roslib; roslib.load_manifest('tb_manipulator')
 import rospy
 import actionlib
 

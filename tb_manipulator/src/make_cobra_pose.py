@@ -34,7 +34,7 @@
 #
 
 import roslib
-roslib.load_manifest('btb_manipulator')
+roslib.load_manifest('tb_manipulator')
 
 import rospy
 from std_msgs.msg import Float64

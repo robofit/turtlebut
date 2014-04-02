@@ -3,7 +3,7 @@
 # freely inspired by http://www.ros.org/wiki/arbotix_python/follow_controller
 
 import roslib
-roslib.load_manifest('btb_manipulator')
+roslib.load_manifest('tb_manipulator')
 
 import rospy, actionlib
 

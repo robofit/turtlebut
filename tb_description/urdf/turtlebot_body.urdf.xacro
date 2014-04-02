@@ -3,7 +3,7 @@
   <property name="M_PI" value="3.14159"/>
 
   <!-- Macro for TurtleBot body. Including Gazebo extensions, but does not include Kinect -->
-  <include filename="$(find tb_description)/urdf/gazebo.urdf.xacro"/>
+  <xacro:include filename="$(find tb_description)/urdf/gazebo.urdf.xacro"/>
 
 
   <property name="base_x" value="0.33" />
@@ -362,7 +362,6 @@
       <origin xyz="0 0 0.05" rpy="0 0 0" />
       <geometry>
         <box size="0.1 0.1 0.15" />
-        <!--mesh filename="package://btb_description/meshes/sick_s300_laser.dae"/-->
       </geometry>
       <material name="blue">
         <color rgba="0 0 .8 1"/>

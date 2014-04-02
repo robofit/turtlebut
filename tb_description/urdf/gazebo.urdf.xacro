@@ -4,7 +4,8 @@
   
 
 <xacro:macro name="turtlebot_sim_kinect">
-  <gazebo reference="camera_link">
+  
+  <!--gazebo reference="camera_link">
     <sensor:camera name="camera">
       <imageFormat>R8G8B8</imageFormat>
       <imageSize>640 480</imageSize>
@@ -30,7 +31,31 @@
         <distortion_t2>0.00000001</distortion_t2>
       </controller:gazebo_ros_openni_kinect>
     </sensor:camera>
-  </gazebo>
+  </gazebo-->
+  
+  <plugin name="kinect_controller" filename="libgazebo_ros_openni_kinect.so">
+    <baseline>0.2</baseline>
+    <alwaysOn>true</alwaysOn>
+    <updateRate>1.0</updateRate>
+    <cameraName>camera_ir</cameraName>
+    <imageTopicName>/cam3d/depth/image_raw</imageTopicName>
+    <cameraInfoTopicName>/cam3d/depth/camera_info</cameraInfoTopicName>
+    <depthImageTopicName>/cam3d/depth/image_raw</depthImageTopicName>
+    <depthImageInfoTopicName>/cam3d/depth/camera_info</depthImageInfoTopicName>
+    <pointCloudTopicName>/cam3d/depth/points</pointCloudTopicName>
+    <frameName>camera_link</frameName>
+    <pointCloudCutoff>0.5</pointCloudCutoff>
+    <distortionK1>0.00000001</distortionK1>
+    <distortionK2>0.00000001</distortionK2>
+    <distortionK3>0.00000001</distortionK3>
+    <distortionT1>0.00000001</distortionT1>
+    <distortionT2>0.00000001</distortionT2>
+    <CxPrime>0</CxPrime>
+    <Cx>0</Cx>
+    <Cy>0</Cy>
+    <focalLength>0</focalLength>
+    <hackBaseline>0</hackBaseline>
+  </plugin>
   
   <transmission type="pr2_mechanism_model/SimpleTransmission" name="kinect_trans">
     <actuator name="kinect_motor" />
@@ -49,39 +74,40 @@
 </xacro:macro>
 
 <xacro:macro name="turtlebot_sim_imu_left">
-  <gazebo>
+  <!--gazebo>
     <controller:gazebo_ros_imu name="imu_controller" plugin="libgazebo_ros_imu.so">
       <alwaysOn>true</alwaysOn>
       <updateRate>30</updateRate>
-      <bodyName>imu_left_link</bodyName> <!-- was gyro_link -->
+      <bodyName>imu_left_link</bodyName>
       <topicName>imu_left/data</topicName>
       <gaussianNoise>${0.0017*0.0017}</gaussianNoise>
       <xyzOffsets>0 0 0</xyzOffsets> 
       <rpyOffsets>0 0 0</rpyOffsets>
       <interface:position name="imu_left_position"/>
     </controller:gazebo_ros_imu>
-  </gazebo>
+  </gazebo-->
 </xacro:macro>
 
 <xacro:macro name="turtlebot_sim_imu_right">
-  <gazebo>
+  <!--gazebo>
     <controller:gazebo_ros_imu name="imu_controller" plugin="libgazebo_ros_imu.so">
       <alwaysOn>true</alwaysOn>
       <updateRate>30</updateRate>
-      <bodyName>imu_right_link</bodyName> <!-- was gyro_link -->
+      <bodyName>imu_right_link</bodyName>
       <topicName>imu_right/data</topicName>
       <gaussianNoise>${0.0017*0.0017}</gaussianNoise>
       <xyzOffsets>0 0 0</xyzOffsets> 
       <rpyOffsets>0 0 0</rpyOffsets>
       <interface:position name="imu_right_position"/>
     </controller:gazebo_ros_imu>
-  </gazebo>
+  </gazebo-->
 </xacro:macro>
 
 <xacro:macro name="turtlebot_sim_laser">
-  <gazebo reference="laser">
+
+  <!--gazebo reference="laser">
     <sensor:ray name="laser">
-      <rayCount>540</rayCount> <!-- 270 deg. / 0.5 deg. -->
+      <rayCount>540</rayCount>
       <rangeCount>540</rangeCount>
       <laserCount>1</laserCount>
       
@@ -104,12 +130,49 @@
 	      <interface:laser name="gazebo_ros_laser_iface" />
       </controller:gazebo_ros_laser>
     </sensor:ray>
+  </gazebo-->
+  
+  <gazebo reference="laser">
+    <sensor type="gpu_ray" name="sick_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>20</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>540</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>30.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
+        <topicName>scan</topicName>
+        <frameName>laser</frameName>
+      </plugin>
+    </sensor>
   </gazebo>
+  
 </xacro:macro>
 
 <xacro:macro name="turtlebot_sim_create">
   <gazebo>
-    <controller:gazebo_ros_create name="create_controller" plugin="libgazebo_ros_create.so">
+    <!--controller:gazebo_ros_create name="create_controller" plugin="libgazebo_ros_create.so">
       <alwaysOn>true</alwaysOn>
       <node_namespace>turtlebot_node</node_namespace>
       <left_wheel_joint>left_wheel_joint</left_wheel_joint>
@@ -121,28 +184,27 @@
       <base_geom>base_link_geom_base_link</base_geom>
       <updateRate>40</updateRate>
       <torque>1.0</torque>
-    </controller:gazebo_ros_create>
+    </controller:gazebo_ros_create-->
     
-    <!--controller:diffdrive_plugin name="differential_drive_controller" plugin="libdiffdrive_plugin.so">
-       <alwaysOn>true</alwaysOn>
-       <update>100</update>
-       <updateRate>100.0</updateRate>
-       <leftJoint>left_wheel_joint</leftJoint>
-       <rightJoint>right_wheel_joint</rightJoint>
-       <wheelSeparation>.260</wheelSeparation>
-       <wheelDiameter>0.066</wheelDiameter>
-       <torque>1.0</torque>
-       <interface:position name="position_iface_0"/>
-       <robotNamespace></robotNamespace>
-       <topicName>cmd_vel</topicName>
-    </controller:diffdrive_plugin-->
-    
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+    <alwaysOn>true</alwaysOn>
+    <updateRate>40</updateRate>
+    <leftJoint>left_wheel_joint</leftJoint>
+    <rightJoint>right_wheel_joint</rightJoint>
+    <wheelSeparation>.260</wheelSeparation>
+    <wheelDiameter>0.066</wheelDiameter>
+    <torque>1.0</torque>
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+    <robotBaseFrame>base_footprint</robotBaseFrame>
+  </plugin>    
     
   </gazebo>
 </xacro:macro>
 
 <xacro:macro name="turtlebot_sim_wall_sensors">
-  <gazebo reference="wall_sensor_link">
+  <!--gazebo reference="wall_sensor_link">
     <sensor:ray name="wall_sensor">
       <alwaysActive>true</alwaysActive>
       <rayCount>1</rayCount>
@@ -221,7 +283,7 @@
       <maxRange>0.04</maxRange>
       <displayRays>fan</displayRays>
     </sensor:ray>
-  </gazebo>
+  </gazebo-->
   
   </xacro:macro>
 
@@ -230,7 +292,7 @@
     <mu2 value="10"/>
     <kp value="100000000.0"/>
     <kd value="10000.0"/>
-    <fdir value="1 0 0"/>
+    <!--fdir value="1 0 0"/-->
   </gazebo>
 
   <gazebo reference="right_wheel_link">
@@ -238,7 +300,7 @@
     <mu2 value="10"/>
     <kp value="100000000.0"/>
     <kd value="10000.0"/>
-    <fdir value="1 0 0"/>
+    <!--fdir value="1 0 0"/-->
   </gazebo>
   
   <gazebo reference="rear_wheel_link">
