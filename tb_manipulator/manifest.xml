@@ -1,0 +1,24 @@
+<package>
+  <description brief="tb_manipulator">
+
+     turtlebot_arm_navigation
+
+  </description>
+  <author>fit</author>
+  <license></license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/btb_manipulator</url>
+  <depend package="planning_environment"/>
+  <depend package="arm_kinematics_constraint_aware"/>
+  <depend package="ompl_ros_interface"/>
+  <depend package="trajectory_filter_server"/>
+  <depend package="constraint_aware_spline_smoother"/>
+  <depend package="move_arm"/>
+  <depend package="pr2_controllers_msgs"/>
+  <depend package="dynamixel_msgs"/>
+  <!--depend package="srs_interaction_primitives"/>
+  <depend package="srs_env_model"/-->
+
+</package>
+
+

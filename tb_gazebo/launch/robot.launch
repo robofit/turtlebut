@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- upload robot description to parameter server -->
+  <include file="$(find tb_description)/launch/upload_robot.launch"/>
+
+  <!-- put robot into simulated world -->
+  <!--node name="spawn_turtlebot_model" pkg="gazebo" type="spawn_model" args="$(optenv ROBOT_INITIAL_POSE) -unpause -urdf -param robot_description -model turtlebot" respawn="false" output="screen"/-->
+  <node name="spawn_tb_model" pkg="gazebo_ros" type="spawn_model" args="$(optenv ROBOT_INITIAL_POSE) -unpause -urdf -param robot_description -model turtlebot -ros_namespace /gazebo" respawn="false" output="screen" />
+  
+  <!-- this will NOT be needed when we will be able tu run dynamixel gazebo controllers -->
+  <!--node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" respawn="false" output="screen"/-->
+
+  <!-- odometry estimator (source of odom_combined) and TF transform -->
+  <!-- first, we need node which will add covariances to the odometry (not needed when using create gazebo plugin)-->
+  <!--node pkg="btb_gazebo" name="odometry_fix" type="odom_fix.py" output="screen">
+    <remap from="odom_in" to="odom_raw"/>
+    <remap from="odom_out" to="odom"/>
+  </node-->
+  
+  <include file="$(find tb_bringup)/components/robot_pose_ekf.launch"/>
+  
+  <!-- laser scan matcher doesn't work for robot in empty world! -->
+  <!--include file="$(find btb_bringup)/components/laser_scan_matcher.launch"/-->
+  
+  <!--node pkg="tf" type="static_transform_publisher" name="odom_combined_to_odom" 
+  args="0.0 0.0 0.0 0.0 0.0 0.0 /odom_combined /odom 40" /-->
+  
+  <!--include file="$(find tb_teleop)/launch/interactive_teleop.launch"/-->
+  
+  <!-- Gazebo controllers for arm and kinect servo -->
+  <include file="$(find tb_gazebo)/launch/arm_controllers.launch"/>
+  
+  <!-- high level ARM controller-->
+  <include file="$(find tb_manipulator)/launch/joint_trajectory_action.launch" />
+  
+  <!-- this will create colored pointcloud -->
+	<!--node name="create_colored_point_cloud" pkg="nodelet" type="nodelet" args="standalone cob_gazebo/CreateColoredPointCloud" respawn="false" output="screen">
+		<remap from="image_color" to="cam3d/rgb/image_color"/>
+		<remap from="point_cloud2" to="cam3d/depth/points"/>
+		<remap from="colored_point_cloud2" to="cam3d/rgb/points"/>
+	</node-->
+	
+	<!-- throttling of Kinect data -->
+	<!--include file="$(find tb_bringup)/components/kinect_throttle.launch"/-->
+	
+	<!-- flip video from kinect which is upside down -->
+  <include file="$(find tb_common)/launch/video_flip.launch"/>
+  
+  <include file="$(find tb_base_driver)/launch/velocity_filter.launch" />
+	
+	<!-- put robot arm into default position -->
+	<!--node name="arm_def_pose" pkg="btb_manipulator" type="make_cobra_pose.py" respawn="false" output="screen"/-->
+	
+	<!-- arm_navigation stack -->
+	<!--include file="$(find btb_manipulator)/launch/btb_arm_navigation.launch" /-->
+  
+</launch>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- upload robot description to parameter server -->
+  <include file="$(find tb_description)/launch/upload_robot.launch"/>
+
+  <!-- put robot into simulated world -->
+  <!--node name="spawn_turtlebot_model" pkg="gazebo" type="spawn_model" args="$(optenv ROBOT_INITIAL_POSE) -unpause -urdf -param robot_description -model turtlebot" respawn="false" output="screen"/-->
+  <node name="spawn_tb_model" pkg="gazebo_ros" type="spawn_model" args="$(optenv ROBOT_INITIAL_POSE) -unpause -urdf -param robot_description -model turtlebot -ros_namespace /gazebo" respawn="false" output="screen" />
+  
+</launch>

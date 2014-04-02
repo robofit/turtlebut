@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- start gazebo with an empty plane -->
+  <param name="/use_sim_time" value="true" />
+
+  <!--node name="gazebo" pkg="gazebo" type="gazebo" args="-u $(find btb_gazebo)/worlds/empty.world" respawn="false" output="screen">
+    <remap from="/dynamixel/joint_states" to="/joint_states"/>
+    <remap from="/dynamixel/elbow_flex_controller/state" to="/dynamixel/elbow_flex_controller/state_sim"/>
+    <remap from="/dynamixel/kinect_controller/state" to="/dynamixel/kinect_controller/state_sim"/>
+    <remap from="/dynamixel/left_finger_controller/state" to="/dynamixel/left_finger_controller/state_sim"/>
+    <remap from="/dynamixel/right_finger_controller/state" to="/dynamixel/right_finger_controller/state_sim"/>
+    <remap from="/dynamixel/shoulder_pan_controller/state" to="/dynamixel/shoulder_pan_controller/state_sim"/>
+    <remap from="/dynamixel/shoulder_pitch_controller/state" to="/dynamixel/shoulder_pitch_controller/state_sim"/>
+    <remap from="/dynamixel/wrist_roll_controller/state" to="/dynamixel/wrist_roll_controller/state_sim"/>
+  </node-->
+  
+  <!-- start up empty world -->
+  <arg name="gui" default="true"/>
+  <arg name="paused" default="false"/>
+  <!-- TODO: throttled not implemented in gazebo_ros/empty_world.launch
+  <arg name="throttled" default="false"/>
+  -->
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)" />
+  </include>
+
+  <include file="$(find tb_gazebo)/launch/robot.launch"/>
+  
+</launch>
