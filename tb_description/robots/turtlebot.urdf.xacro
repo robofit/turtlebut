@@ -22,7 +22,7 @@
      </controller:gazebo_ros_controller_manager-->
      
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>dynamixel</robotNamespace>
+      <robotNamespace>/dynamixel</robotNamespace>
     </plugin>
      
      
@@ -37,6 +37,7 @@
   
   <!-- Kinect frames and mounting (includes simulation) -->
   <turtlebot_kinect/>
+  <turtlebot_sim_kinect/>
 
   
 </robot>

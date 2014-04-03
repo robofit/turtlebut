@@ -53,7 +53,7 @@
     <visual>
       <origin xyz=" 0 0 0.0308" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://turtlebot_description/meshes/create_body.dae"/>
+        <mesh filename="package://create_description/meshes/create_body.dae"/>
       </geometry>
     </visual>
 

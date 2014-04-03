@@ -57,11 +57,20 @@
     <hackBaseline>0</hackBaseline>
   </plugin>
   
-  <transmission type="pr2_mechanism_model/SimpleTransmission" name="kinect_trans">
+  <!--transmission type="pr2_mechanism_model/SimpleTransmission" name="kinect_trans">
     <actuator name="kinect_motor" />
     <joint name="kinect_joint" />
     <mechanicalReduction>1.0</mechanicalReduction>
     <motorTorqueConstant>1.0</motorTorqueConstant>
+  </transmission-->
+  
+  <transmission name="kinect_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="kinect_joint"/>
+      <actuator name="kinect_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1.0</mechanicalReduction>
+    </actuator>
   </transmission>
   
   <gazebo reference="kinect_joint">

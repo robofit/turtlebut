@@ -13,6 +13,7 @@
   <depend package="urdf"/>
   <depend package="xacro"/>
   <depend package="smart_arm_description"/>
+  <depend package="create_description"/>
 
 </package>
 
