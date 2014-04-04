@@ -53,9 +53,9 @@ if __name__ == '__main__':
     pubs = [rospy.Publisher('/dynamixel/' + name + '/command', Float64) for name in joint_names]
     rospy.init_node('make_cobra_pose', anonymous=True)
     
-    rospy.loginfo('Waiting for dynamixel topics to become available...')
+    #rospy.loginfo('Waiting for dynamixel topics to become available...')
     
-    rospy.wait_for_message('/dynamixel/shoulder_pitch_controller/state',JointState)
+    #rospy.wait_for_message('/dynamixel/shoulder_pitch_controller/state',JointState)
     
     rospy.loginfo('Publishing positions...')
     

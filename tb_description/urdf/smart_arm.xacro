@@ -307,7 +307,7 @@
         <transmission name="shoulder_pan_trans">
           <type>transmission_interface/SimpleTransmission</type>
           <joint name="shoulder_pan_joint"/>
-            <actuator name="shoulder_pan_motor">
+          <actuator name="shoulder_pan_motor">
             <hardwareInterface>PositionJointInterface</hardwareInterface>
             <mechanicalReduction>1.0</mechanicalReduction>
           </actuator>
@@ -315,7 +315,7 @@
         
         <transmission name="shoulder_pitch_trans">
           <type>transmission_interface/SimpleTransmission</type>
-          <joint name="shoulder_pan_joint"/>
+          <joint name="shoulder_pitch_joint"/>
             <actuator name="shoulder_pitch_motor">
             <hardwareInterface>PositionJointInterface</hardwareInterface>
             <mechanicalReduction>1.0</mechanicalReduction>
