@@ -1,0 +1,68 @@
+joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+shoulder_pan_controller:
+  type: position_controllers/JointPositionController
+  joint: shoulder_pan_joint
+  pid: &shoulder_pan_position_gains
+    p: 2000.0
+    i: 100.0
+    d: 5.0
+    i_clamp: 4.0
+
+shoulder_pitch_controller:
+  type: position_controllers/JointPositionController
+  joint: shoulder_pitch_joint
+  pid: &shoulder_pitch_position_gains
+    p: 1000.0
+    i: 500.0
+    d: 5.0
+    i_clamp: 4.0
+
+elbow_flex_controller:
+  type: position_controllers/JointPositionController
+  joint: elbow_flex_joint
+  pid: &elbow_flex_position_gains
+    p: 1000.0
+    i: 500.0
+    d: 5.0
+    i_clamp: 4.0
+
+wrist_roll_controller:
+  type: position_controllers/JointPositionController
+  joint: wrist_roll_joint
+  pid: &wrist_roll_position_gains
+    p: 500.0
+    i: 250.0
+    d: 2.5
+    i_clamp: 2.0
+
+left_finger_controller:
+  type: position_controllers/JointPositionController
+  joint: left_finger_joint
+  pid: &left_finger_position_gains
+    p: 8.0
+    i: 1.0
+    d: 5.0
+    i_clamp: 0.4
+
+right_finger_controller:
+  type: position_controllers/JointPositionController
+  joint: right_finger_joint
+  pid: &right_finger_position_gains
+    p: 8.0
+    i: 1.0
+    d: 5.0
+    i_clamp: 0.4
+    
+kinect_controller:
+  type: position_controllers/JointPositionController
+  joint: kinect_joint
+  pid: &kinect_position_gains
+    p: 2.0
+    i: 0.5
+    d: 0.1
+    i_clamp: 10.0
+
+

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+
+<group ns="dynamixel">
+
+  <!--node pkg="joint_trajectory_action" name="joint_trajectory_action" type="joint_trajectory_action" output="screen">
+   <rosparam file="$(find btb_manipulator)/config/btb_joint_trajectory_action.yaml"/>
+  </node-->
+  
+  <!-- USE JointTrajectoryActionController instead -->
+  <!--rosparam command="load" file="$(find btb_manipulator)/config/arm_controller.yaml" /-->
+  
+  <!-- Controllers that come up started -->
+  <!--node name="arm_controller_spawner"
+        pkg="pr2_controller_manager" type="spawner" output="screen"
+        args="arm_controller" /-->
+  <group ns="arm_controller"> 
+    <rosparam file="$(find tb_manipulator)/config/follow_joint_controller.yaml"/>
+  </group>
+                
+  <node name="follow_joint_controller" pkg="tb_manipulator" type="follow_controller.py" output="screen">
+    
+  </node>
+
+</group>
+
+</launch>

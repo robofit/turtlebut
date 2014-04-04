@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+
+  <group ns="dynamixel">
+
+    <rosparam file="$(find tb_gazebo)/config/smart_arm_controllers.yaml" command="load"/>
+
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/dynamixel" args="shoulder_pan_controller shoulder_pitch_controller elbow_flex_controller wrist_roll_controller left_finger_controller right_finger_controller kinect_controller joint_state_controller"/>
+    
+    <!-- workaround for two finger in simulation, while real robot has only one (right finger) -->
+    <!--node pkg="tb_gazebo" name="command_forwarder" type="dynamixel_command_forwarder.py" output="screen">
+      <remap from="input_topic"  to="/dynamixel/right_finger_controller/command"/>
+      <remap from="output_topic" to="/dynamixel/left_finger_controller/command"/>
+    </node-->
+    
+    <!-- another workaround - republishing state from controllers as JointState from dynamixel_msgs -->
+    <!--node pkg="tb_gazebo" name="dynamixel_virtual_interface" type="dynamixel_virtual_interface.py" output="screen"/-->
+    
+    <node name="dynamixel_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="joint_states" />
+  </node>
+  
+  </group>
+
+</launch>

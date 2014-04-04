@@ -35,14 +35,11 @@
 * Author: Antons Rebguns
 -->
 
-<robot
-    xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
-    xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
-    xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+<robot name="smart_arm_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
     
-    <include filename="$(find smart_arm_description)/urdf/materials.urdf.xacro" />
+    <xacro:include filename="$(find smart_arm_description)/urdf/materials.urdf.xacro" />
 
-    <macro name="smart_arm" params="parent *origin">
+    <xacro:macro name="smart_arm" params="parent *origin">
         <!-- ****** JOINT DEFINITIONS ****** -->
         
         <!-- Arm's base joint -->
@@ -306,49 +303,61 @@
         </link>
         
         <!-- ****** TRANSMISSION DEFINITIONS ****** -->
-               
-        
-        <transmission type="pr2_mechanism_model/SimpleTransmission" name="shoulder_pan_trans">
-            <actuator name="shoulder_pan_motor" />
-            <joint name="shoulder_pan_joint" />
+          
+        <transmission name="shoulder_pan_trans">
+          <type>transmission_interface/SimpleTransmission</type>
+          <joint name="shoulder_pan_joint"/>
+          <actuator name="shoulder_pan_motor">
+            <hardwareInterface>PositionJointInterface</hardwareInterface>
             <mechanicalReduction>1.0</mechanicalReduction>
-            <motorTorqueConstant>1.0</motorTorqueConstant>
+          </actuator>
+        </transmission>      
+        
+        <transmission name="shoulder_pitch_trans">
+          <type>transmission_interface/SimpleTransmission</type>
+          <joint name="shoulder_pitch_joint"/>
+            <actuator name="shoulder_pitch_motor">
+            <hardwareInterface>PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1.0</mechanicalReduction>
+          </actuator>
+        </transmission>  
+   
+        <transmission name="elbow_flex_trans">
+          <type>transmission_interface/SimpleTransmission</type>
+          <joint name="elbow_flex_joint"/>
+            <actuator name="elbow_flex_motor">
+            <hardwareInterface>PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1.0</mechanicalReduction>
+          </actuator>
         </transmission>
         
-        <transmission type="pr2_mechanism_model/SimpleTransmission" name="shoulder_pitch_trans">
-            <actuator name="shoulder_pitch_motor" />
-            <joint name="shoulder_pitch_joint" />
+        <transmission name="wrist_roll_trans">
+          <type>transmission_interface/SimpleTransmission</type>
+          <joint name="wrist_roll_joint"/>
+            <actuator name="wrist_roll_motor">
+            <hardwareInterface>PositionJointInterface</hardwareInterface>
             <mechanicalReduction>1.0</mechanicalReduction>
-            <motorTorqueConstant>1.0</motorTorqueConstant>
+          </actuator>
+        </transmission>  
+        
+        <transmission name="right_finger_trans">
+          <type>transmission_interface/SimpleTransmission</type>
+          <joint name="right_finger_joint"/>
+            <actuator name="right_finger_motor">
+            <hardwareInterface>PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1.0</mechanicalReduction>
+          </actuator>
         </transmission>
         
-        <transmission type="pr2_mechanism_model/SimpleTransmission" name="elbow_flex_trans">
-            <actuator name="elbow_flex_motor" />
-            <joint name="elbow_flex_joint" />
+        <transmission name="left_finger_trans">
+          <type>transmission_interface/SimpleTransmission</type>
+          <joint name="left_finger_joint"/>
+            <actuator name="left_finger_motor">
+            <hardwareInterface>PositionJointInterface</hardwareInterface>
             <mechanicalReduction>1.0</mechanicalReduction>
-            <motorTorqueConstant>1.0</motorTorqueConstant>
+          </actuator>
         </transmission>
-        
-        <transmission type="pr2_mechanism_model/SimpleTransmission" name="wrist_roll_trans">
-            <actuator name="wrist_roll_motor" />
-            <joint name="wrist_roll_joint" />
-            <mechanicalReduction>1.0</mechanicalReduction>
-            <motorTorqueConstant>1.0</motorTorqueConstant>
-        </transmission>
-        
-        <transmission type="pr2_mechanism_model/SimpleTransmission" name="right_finger_trans">
-            <actuator name="right_finger_motor" />
-            <joint name="right_finger_joint" />
-            <mechanicalReduction>1.0</mechanicalReduction>
-            <motorTorqueConstant>1.0</motorTorqueConstant>
-        </transmission>
-        
-        <transmission type="pr2_mechanism_model/SimpleTransmission" name="left_finger_trans">
-            <actuator name="left_finger_motor" />
-            <joint name="left_finger_joint" />
-            <mechanicalReduction>1.0</mechanicalReduction>
-            <motorTorqueConstant>1.0</motorTorqueConstant>
-        </transmission>
+
         
         <!-- ****** MATERIAL DEFINITIONS ****** -->
         
@@ -443,5 +452,5 @@
             <stopKp value="${STOP_KP}" />
             <fudgeFactor value="1.0" />
         </gazebo>
-    </macro>
+    </xacro:macro>
 </robot>

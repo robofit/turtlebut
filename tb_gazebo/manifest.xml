@@ -1,0 +1,25 @@
+<package>
+  <description brief="tb_gazebo">
+
+     turtlebot_gazebo
+
+  </description>
+  <author>Zdenek Materna (imaterna@fit.vutbr.cz)</author>
+  <license>BUT Open Souce License</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/turtlebot_gazebo</url>
+  
+  <depend package="pr2_controller_manager"/>
+  <depend package="single_joint_position_action"/>
+  <depend package="std_msgs"/>
+  <depend package="nav_msgs"/>
+  <depend package="gazebo_ros"/>
+  <depend package="gazebo_ros_control"/>
+  <!--depend package="cob_gazebo_worlds"/-->
+  <depend package="dynamixel_msgs"/>
+  <!--depend package="erratic_gazebo_plugins"/-->
+  <!--depend package="cob_gazebo"/-->
+
+</package>
+
+
