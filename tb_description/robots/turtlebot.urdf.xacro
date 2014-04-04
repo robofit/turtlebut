@@ -10,6 +10,7 @@
   <xacro:include filename="$(find tb_description)/urdf/turtlebot_kinect.urdf.xacro" />
   <xacro:include filename="$(find tb_description)/urdf/smart_arm.xacro" />
   <xacro:include filename="$(find tb_description)/urdf/constants.xacro" />
+  <xacro:include filename="$(find tb_description)/urdf/gazebo.urdf.xacro" />
 
   <gazebo>   
      
@@ -31,13 +32,15 @@
   <!-- Body of TurtleBot, with plates, standoffs and Create (including sim sensors) -->
   <turtlebot_body/>
   
+  <!--turtlebot_sim_imu_left/>
+  <turtlebot_sim_imu_right/-->
+  
    <smart_arm parent="base_link">
      <origin xyz="0.13 0 0.12" rpy="0 0 0" />
    </smart_arm>
   
   <!-- Kinect frames and mounting (includes simulation) -->
   <turtlebot_kinect/>
-  <turtlebot_sim_kinect/>
 
   
 </robot>
